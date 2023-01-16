@@ -9,9 +9,9 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
-        val action = findViewById<Button>(R.id.homeMainAction)
+        val action = findViewById<Button>(R.id.PlatsButton)
         action.setOnClickListener{
             Toast.makeText(this, "Hello ISEN M1", Toast.LENGTH_SHORT).show()
             Snackbar.make(it, "Hello ISEN M1", Snackbar.LENGTH_SHORT).show()
