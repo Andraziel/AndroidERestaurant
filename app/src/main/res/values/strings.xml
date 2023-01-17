@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
     <string-array name="entrees">
-        <item>salade caesar</item>
-        <item>carpaccio</item>
+        <item>Salade Caesar</item>
+        <item>Carpaccio</item>
     </string-array>
 
     <string-array name="plats">
@@ -11,7 +11,7 @@
     </string-array>
 
     <string-array name="desserts">
-        <item>banana split</item>
-        <item>pomme caramélisé</item>
+        <item>Banana Split</item>
+        <item>Pomme Caramélisé</item>
     </string-array>
 </resources>
