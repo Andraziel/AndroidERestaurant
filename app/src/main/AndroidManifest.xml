@@ -12,13 +12,10 @@
         android:theme="@style/Theme.AndroidERestaurant"
         tools:targetApi="31">
         <activity
-            android:name=".DessertActivity"
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".MealActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StartersActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -29,6 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

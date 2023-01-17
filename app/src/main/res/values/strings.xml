@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
+    <string-array name="entrees">
+        <item>salade caesar</item>
+        <item>carpaccio</item>
+    </string-array>
+
+    <string-array name="plats">
+        <item>Cassoulet</item>
+        <item>Canard laqué </item>
+    </string-array>
+
+    <string-array name="desserts">
+        <item>banana split</item>
+        <item>pomme caramélisé</item>
+    </string-array>
 </resources>
