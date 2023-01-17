@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import fr.isen.deleuziere.androiderestaurant.databinding.ActivityMealBinding
+import org.json.JSONObject
 
 class MealActivity : AppCompatActivity() {
 
@@ -36,11 +40,18 @@ class MealActivity : AppCompatActivity() {
 
                 binding.categoryList.layoutManager = LinearLayoutManager(this) // Set the layout manager for the RecyclerView
 
-                binding.categoryList.adapter = CategoryAdapter(value) { // Set the adapter for the RecyclerView with the generated list
+                binding.categoryList.adapter = CategoryAdapter(arrayListOf()) { // New one, check what has changed and adjust
                     val intent = Intent(this, DetailActivity::class.java)
                     intent.putExtra("plat",it)
                     startActivity(intent)
                 }
+                loadDishesFromAPI()
+
+                /*binding.categoryList.adapter = CategoryAdapter(value) { // Set the adapter for the RecyclerView with the generated list
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra("plat",it)
+                    startActivity(intent)
+                }*/
             }
 
             "Plats" -> {
@@ -71,5 +82,19 @@ class MealActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun loadDishesFromAPI() {
+
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+        val jsonObject = JSONObject()
+        jsonObject.put("id_shop", "1")
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObject, {
+                Log.w("CategoryActivity","reponse : $it")
+            }, {
+                Log.w("CategoryActivity","erreur : $it")
+            }
+        )
+        Volley.newRequestQueue(this).add(jsonRequest)
     }
 }
