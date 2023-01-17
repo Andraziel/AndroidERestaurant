@@ -28,13 +28,13 @@ class MealActivity : AppCompatActivity() {
         // Check the category it's in
         when (category) {
             "Entrées" -> {
+                binding.categoryDisplayText.text = "Voici nos superbes entrées !" //Change the displayed text
 
                 val value = resources.getStringArray(R.array.entrees).toList() as ArrayList<String> // Get the "entrees" Array // Convert the Array to a list
 
                 Log.d("Debug", value.toString()) // Log the generated list for verification
 
                 binding.categoryList.layoutManager = LinearLayoutManager(this) // Set the layout manager for the RecyclerView
-
 
                 binding.categoryList.adapter = CategoryAdapter(value) { // Set the adapter for the RecyclerView with the generated list
                     val intent = Intent(this, DetailActivity::class.java)
@@ -44,6 +44,8 @@ class MealActivity : AppCompatActivity() {
             }
 
             "Plats" -> {
+                binding.categoryDisplayText.text = "Laissez vous tentez par un de nos magnifique plats !"
+
                 val value = resources.getStringArray(R.array.plats).toList() as ArrayList<String>
                 Log.d("Debug", value.toString())
 
@@ -56,6 +58,8 @@ class MealActivity : AppCompatActivity() {
             }
 
             "Desserts" -> {
+                binding.categoryDisplayText.text = "Une petite douceur pour terminer..."
+
                 val value = resources.getStringArray(R.array.desserts).toList() as ArrayList<String>
                 Log.d("Debug", value.toString())
 

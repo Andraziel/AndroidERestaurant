@@ -25,8 +25,8 @@
     <View
         android:id="@+id/divider"
         android:layout_width="250dp"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
+        android:layout_height="5dp"
+        android:background="@color/tertiary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cellName" />
