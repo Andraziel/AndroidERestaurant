@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.EntreesButton.setOnClickListener{
-            //Toast.makeText(this, "Chargement des entrées", Toast.LENGTH_SHORT).show()
             intent.putExtra("category","Entrées")
             startActivity(intent)
         }
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.DessertsButton.setOnClickListener{
-            //Toast.makeText(this, "Chargement des desserts", Toast.LENGTH_SHORT).show()
             intent.putExtra("category","Desserts")
             startActivity(intent)
         }

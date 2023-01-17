@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoryAdapter(var dishes: ArrayList<String>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(var dishes: ArrayList<String>, val onItemClickListener: (name: String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //extract cellName
-        val cellName = view.findViewById<TextView>(R.id.cellName)
+        val cellName = view.findViewById<TextView>(R.id.cellName) // Extract cellName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -24,6 +22,9 @@ class CategoryAdapter(var dishes: ArrayList<String>) : RecyclerView.Adapter<Cate
     override fun onBindViewHolder(holder: CategoryAdapter.CategoryViewHolder, position: Int) {
         val dish = dishes[position]
         holder.cellName.text = dish
+        holder.itemView.setOnClickListener {
+            onItemClickListener(dish)
+        }
     }
 
     override fun getItemCount(): Int = dishes.size

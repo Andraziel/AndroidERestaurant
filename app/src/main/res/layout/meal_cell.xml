@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:alpha="1">
+    android:alpha="1"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/cellName"
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="ITEM"
+        android:text="{ITEM}"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

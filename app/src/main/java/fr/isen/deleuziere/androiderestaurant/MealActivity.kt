@@ -1,5 +1,6 @@
 package fr.isen.deleuziere.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +15,11 @@ class MealActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //set binding
+        // Set binding
         binding = ActivityMealBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // extract category and set title and actionbar
+        // Extract category and set title and actionbar
         val category = intent.getStringExtra("category")
         binding.CategoryDisplay.text = category
         val actionBar = supportActionBar
@@ -29,34 +29,42 @@ class MealActivity : AppCompatActivity() {
         when (category) {
             "Entrées" -> {
 
-                val value = resources.getStringArray(R.array.entrees) // Get the "entrees" Array
+                val value = resources.getStringArray(R.array.entrees).toList() as ArrayList<String> // Get the "entrees" Array // Convert the Array to a list
 
-                val valuelist = ArrayList<String>(value.toList()) // Convert the Array to a list
-
-                Log.d("Debug", valuelist.toString()) // Log the generated list for verification
-
-                binding.categoryList.adapter = CategoryAdapter(valuelist) // Set the adapter for the RecyclerView with the generated list
+                Log.d("Debug", value.toString()) // Log the generated list for verification
 
                 binding.categoryList.layoutManager = LinearLayoutManager(this) // Set the layout manager for the RecyclerView
 
+
+                binding.categoryList.adapter = CategoryAdapter(value) { // Set the adapter for the RecyclerView with the generated list
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra("plat",it)
+                    startActivity(intent)
+                }
             }
+
             "Plats" -> {
-                val value = resources.getStringArray(R.array.plats)
-                val valuelist = ArrayList<String>(value.toList())
-                Log.d("Debug", valuelist.toString())
+                val value = resources.getStringArray(R.array.plats).toList() as ArrayList<String>
+                Log.d("Debug", value.toString())
 
-                binding.categoryList.adapter = CategoryAdapter(valuelist)
                 binding.categoryList.layoutManager = LinearLayoutManager(this)
 
+                binding.categoryList.adapter = CategoryAdapter(value) {
+                    val intent = Intent(this, DetailActivity::class.java)
+                    startActivity(intent)
+                }
             }
-            "Desserts" -> {
-                val value = resources.getStringArray(R.array.desserts)
-                val valuelist = ArrayList<String>(value.toList())
-                Log.d("Debug", valuelist.toString())
 
-                binding.categoryList.adapter = CategoryAdapter(valuelist)
+            "Desserts" -> {
+                val value = resources.getStringArray(R.array.desserts).toList() as ArrayList<String>
+                Log.d("Debug", value.toString())
+
                 binding.categoryList.layoutManager = LinearLayoutManager(this)
 
+                binding.categoryList.adapter = CategoryAdapter(value) {
+                    val intent = Intent(this, DetailActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
