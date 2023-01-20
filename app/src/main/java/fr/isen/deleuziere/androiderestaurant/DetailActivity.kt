@@ -2,12 +2,15 @@ package fr.isen.deleuziere.androiderestaurant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import fr.isen.deleuziere.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.deleuziere.androiderestaurant.databinding.ActivityMealBinding
 import fr.isen.deleuziere.androiderestaurant.model.DataResult
 import fr.isen.deleuziere.androiderestaurant.model.Items
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,13 +18,22 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val valeur = intent.getStringExtra("plat")
+        //val valeur = intent.extras?.getParcelable("plat",Items?:)
 
-        //var plat = Gson().fromJson(valeur, Items::class.java)
+        val plat = intent.getSerializableExtra("plat") as Items
 
-        binding.platDisplay.text = valeur//plat.nameFr
+        //var valeur = Gson().fromJson(plat, Items::class.java)
+
         val actionBar = supportActionBar
-        actionBar?.title = valeur//plat.nameFr
+        actionBar?.title = plat?.nameFr
+        binding.platDisplay.text = plat?.nameFr
+
+        val image = plat.images[0]
+        if (image != "") { Picasso.get().load(image).into(binding.image) }
+
+
+
+
 
     }
 }

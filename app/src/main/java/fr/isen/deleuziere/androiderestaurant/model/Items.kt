@@ -1,6 +1,8 @@
 package fr.isen.deleuziere.androiderestaurant.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
 data class Items (
@@ -15,4 +17,4 @@ data class Items (
   @SerializedName("ingredients"   ) var ingredients : ArrayList<Ingredients> = arrayListOf(),
   @SerializedName("prices"        ) var prices      : ArrayList<Prices>      = arrayListOf()
 
-)
+):java.io.Serializable

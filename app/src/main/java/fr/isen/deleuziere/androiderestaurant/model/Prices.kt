@@ -1,6 +1,8 @@
 package fr.isen.deleuziere.androiderestaurant.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
 data class Prices (
@@ -13,4 +15,4 @@ data class Prices (
   @SerializedName("update_date" ) var updateDate : String? = null,
   @SerializedName("size"        ) var size       : String? = null
 
-)
+):java.io.Serializable

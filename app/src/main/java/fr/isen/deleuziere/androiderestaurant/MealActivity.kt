@@ -3,6 +3,7 @@ package fr.isen.deleuziere.androiderestaurant
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
@@ -58,7 +59,7 @@ class MealActivity : AppCompatActivity() {
 
             val intent = Intent(this, DetailActivity::class.java)
 
-            intent.putExtra("plat","$it")
+            intent.putExtra("plat",it)
 
             startActivity(intent)
 
