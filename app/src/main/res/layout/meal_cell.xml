@@ -9,26 +9,46 @@
 
     <TextView
         android:id="@+id/cellName"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="{ITEM}"
         android:textAlignment="center"
         android:textColor="@color/option"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="250dp"
         android:layout_height="5dp"
         android:background="@color/tertiary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="71dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cellName" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/papatissier" />
+
+    <TextView
+        android:id="@+id/priceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="{PRICE}"
+        android:textAlignment="center"
+        android:textColor="@color/option"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
