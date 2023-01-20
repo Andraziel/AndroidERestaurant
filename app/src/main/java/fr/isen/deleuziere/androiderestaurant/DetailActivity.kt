@@ -18,11 +18,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //val valeur = intent.extras?.getParcelable("plat",Items?:)
-
         val plat = intent.getSerializableExtra("plat") as Items
-
-        //var valeur = Gson().fromJson(plat, Items::class.java)
 
         val actionBar = supportActionBar
         actionBar?.title = plat?.nameFr
