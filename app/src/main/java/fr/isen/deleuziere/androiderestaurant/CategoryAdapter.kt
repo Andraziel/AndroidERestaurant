@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoryAdapter(var dishes: ArrayList<String>, val onItemClickListener: (name: String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
+class CategoryAdapter(private var dishes: ArrayList<String>, val onItemClickListener: (name: String) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cellName = view.findViewById<TextView>(R.id.cellName) // Extract cellName
     }
@@ -29,4 +30,8 @@ class CategoryAdapter(var dishes: ArrayList<String>, val onItemClickListener: (n
 
     override fun getItemCount(): Int = dishes.size
 
+    fun refreshList(dishesFromAPI:ArrayList<String>) {
+        dishes = dishesFromAPI
+        notifyDataSetChanged()
+    }
 }

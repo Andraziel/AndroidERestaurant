@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.EntreesButton.setOnClickListener{
-            intent.putExtra("category","Entrées")
+            intent.putExtra("category",getString(R.string.starters))
+
             startActivity(intent)
         }
 
