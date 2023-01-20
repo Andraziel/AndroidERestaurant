@@ -24,6 +24,7 @@ class CategoryAdapter(private var dishes: ArrayList<Items>, val onItemClickListe
 
     override fun onBindViewHolder(holder: CategoryAdapter.CategoryViewHolder, position: Int) {
         val dish = dishes[position]
+
         holder.cellName.text = dish.nameFr
 
         var price:String? =""
