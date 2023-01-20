@@ -32,8 +32,5 @@ class DetailActivity : AppCompatActivity() {
         if (image != "") { Picasso.get().load(image).into(binding.image) }
 
 
-
-
-
     }
 }
