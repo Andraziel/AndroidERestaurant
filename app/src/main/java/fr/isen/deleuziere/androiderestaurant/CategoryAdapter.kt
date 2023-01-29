@@ -32,7 +32,7 @@ class CategoryAdapter(private var dishes: ArrayList<Items>, val onItemClickListe
         holder.cellName.text = dish.nameFr
 
         val image = dish.images[0]
-        if (image != "") { Picasso.get().load(image).into(holder.imageItem) }
+        if (image != "") { if (image != null) {Picasso.get().load(image).into(holder.imageItem)}}
 
         var price:String? =""
         for (i in dish.prices) {
