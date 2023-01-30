@@ -94,26 +94,31 @@ class DetailActivity : AppCompatActivity() {
             Log.w("333333333333333333333333333333333333333", "$article")
             var articles = ""
             var articlesread = ""
+
             FileReader(fichier).apply {
                 articlesread = readText()
+
                 close()
             }
-            /*
+            Log.w("----------------------", "$article")
+
             if (articlesread == null){
                 val temp = Panier()
                 temp.add(article)
                 articles = Gson().toJson(temp)
             }
             else {
-                val temp = Gson().fromJson(articles, Panier::class.java)
+                var temp = Panier()
+                temp = Gson().fromJson(articlesread, Panier::class.java)
+                Log.w("pofjishdfjsbfvgbqhsdfvhqjfc", "$temp")
                 temp.add(article)
                 articles = Gson().toJson(temp)
-            }*/
-                Log.w("888888888888888888888888888888888888888888888", "$articlesread")
+            }
+
 
             val data = Gson().toJson(article)
             FileOutputStream(fichier).apply {
-                write(data.toByteArray())
+                write(articles.toByteArray())
                 close()
             }
 
@@ -126,9 +131,8 @@ class DetailActivity : AppCompatActivity() {
                 binding.quantityView.text = quantity.toString()
                 binding.buttonPrice.text = "Total " + plat.prices[0].price?.toFloat()?.times(quantity) + " €"
             }
-
-        }
-        /*else {
+        else {
             Toast.makeText(this, "Vous devez entrer une quantité", Toast.LENGTH_SHORT).show()
-        }*/
+        }
     }
+}
