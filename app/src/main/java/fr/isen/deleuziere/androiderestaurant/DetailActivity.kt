@@ -82,17 +82,28 @@ class DetailActivity : AppCompatActivity() {
         if (quantity != 0) {
 
             var fichier = File("./src/main/res/raw/data.json")
-            val data: Article? = null
-            data?.quantity = quantity
-            data?.price = plat.prices[0].price?.toInt()
-            val article = Gson().toJson(data, Article::class.java) as Article
 
-            var articles = Gson().toJson(fichier.readText(), Panier::class.java) as ArrayList<Article>
+            var data = Article("","")
 
-            articles.add(article)
+            data.quantity = quantity.toString()
+            data.price = plat.prices[0].price
+            Log.w("2222222222222222222222222222222","$data")
+/*
+            //val article = Gson().toJson(data, Article::class.java)
+            if(!fichier.exists()) {Log.w("4444444444444","TRRRRRUUUUUUUUUUEEEEEEEEEEE")}
+
+
+
+            //val article = fichier.readText()
+            Log.w("333333333333333333333333333333333333333","$article")
+
+            var articles = Gson().fromJson(fichier.readText(), Panier::class.java) //as ArrayList<Article>
+
+            Log.w("RRRRRRRRRRRRRRRRR","$articles")
+            //articles.add(article)
 
             fichier.writeText(articles.toString())
-
+*/
             Toast.makeText(this, "Ajout de $quantity ${plat.nameFr} au panier", Toast.LENGTH_SHORT).show()
             quantity = 0
             binding.quantityView.text = quantity.toString()
