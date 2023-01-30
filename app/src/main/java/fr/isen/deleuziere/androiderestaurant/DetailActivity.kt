@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Parcel
 import android.util.Log
 import android.widget.Toast
+import androidx.core.net.toUri
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import fr.isen.deleuziere.androiderestaurant.databinding.ActivityDetailBinding
@@ -15,6 +16,8 @@ import fr.isen.deleuziere.androiderestaurant.model.Items
 import fr.isen.deleuziere.androiderestaurant.model.Panier
 import okhttp3.internal.platform.Platform
 import java.io.File
+import java.io.FileOutputStream
+import java.io.FileReader
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
@@ -54,7 +57,6 @@ class DetailActivity : AppCompatActivity() {
             updatePanier(plat)
         }
 
-
 /*
         val viewPager = binding.viewPager
         viewPager.adapter = PageAdapter(arrayListOf<String>()) {
@@ -80,38 +82,53 @@ class DetailActivity : AppCompatActivity() {
 
     private fun updatePanier(plat:Items) {
         if (quantity != 0) {
+            var article = Article(plat.nameFr,quantity.toString(),plat.prices[0].price)
+            Log.w("2222222222222222222222222222222","$article")
 
-            var fichier = File("./src/main/res/raw/data.json")
+            var fichier = File(applicationContext.filesDir,"data.json")
+            if(!fichier.exists()) {
+                fichier.createNewFile()
+                Log.w("4444444444444","TRRRRRUUUUUUUUUUEEEEEEEEEEE")
+            }
 
-            var data = Article("","")
+            Log.w("333333333333333333333333333333333333333", "$article")
+            var articles = ""
+            var articlesread = ""
+            FileReader(fichier).apply {
+                articlesread = readText()
+                close()
+            }
+            /*
+            if (articlesread == null){
+                val temp = Panier()
+                temp.add(article)
+                articles = Gson().toJson(temp)
+            }
+            else {
+                val temp = Gson().fromJson(articles, Panier::class.java)
+                temp.add(article)
+                articles = Gson().toJson(temp)
+            }*/
+                Log.w("888888888888888888888888888888888888888888888", "$articlesread")
 
-            data.quantity = quantity.toString()
-            data.price = plat.prices[0].price
-            Log.w("2222222222222222222222222222222","$data")
-/*
-            //val article = Gson().toJson(data, Article::class.java)
-            if(!fichier.exists()) {Log.w("4444444444444","TRRRRRUUUUUUUUUUEEEEEEEEEEE")}
+            val data = Gson().toJson(article)
+            FileOutputStream(fichier).apply {
+                write(data.toByteArray())
+                close()
+            }
 
+                Toast.makeText(
+                    this,
+                    "Ajout de $quantity ${plat.nameFr} au panier",
+                    Toast.LENGTH_SHORT
+                ).show()
+                quantity = 0
+                binding.quantityView.text = quantity.toString()
+                binding.buttonPrice.text = "Total " + plat.prices[0].price?.toFloat()?.times(quantity) + " €"
+            }
 
-
-            //val article = fichier.readText()
-            Log.w("333333333333333333333333333333333333333","$article")
-
-            var articles = Gson().fromJson(fichier.readText(), Panier::class.java) //as ArrayList<Article>
-
-            Log.w("RRRRRRRRRRRRRRRRR","$articles")
-            //articles.add(article)
-
-            fichier.writeText(articles.toString())
-*/
-            Toast.makeText(this, "Ajout de $quantity ${plat.nameFr} au panier", Toast.LENGTH_SHORT).show()
-            quantity = 0
-            binding.quantityView.text = quantity.toString()
-            binding.buttonPrice.text = "Total " + plat.prices[0].price?.toFloat()?.times(quantity) + " €"
         }
-        else {
+        /*else {
             Toast.makeText(this, "Vous devez entrer une quantité", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
-
-}
